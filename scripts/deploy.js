@@ -6,7 +6,9 @@ async function main() {
     console.log('Balance: ', balance.toString())
 
     const Token = await hre.ethers.getContractFactory("HelloMo")
-    const contract = await Token.deploy()
+    const contract = await Token.deploy({
+        value: hre.ethers.utils.parseEther('0.001')
+      })
     await contract.deployed()
 
     console.log('Contract deployed at address: ', contract.address)
